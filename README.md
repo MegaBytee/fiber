@@ -1,2 +1,2 @@
 # fiber
-go modular framework for building microservices using gofiber
+building microservices using gofiber + mongo

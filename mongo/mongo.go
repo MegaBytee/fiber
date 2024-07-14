@@ -141,3 +141,12 @@ func (m *Mongo) Paginate(name string, filter primitive.D, limit, page int64, x a
 	return paginatedData.Pagination, m.handleErrors(name, PAGINATE, err)
 
 }
+
+func (m *Mongo) PaginateWithSort(name string, filter primitive.D, sortField string, sortValue int, limit, page int64, x any) (paginate.PaginationData, Error) {
+	c := m.Collection(name)
+
+	pQuery := paginate.New(c).Context(context.Background()).Sort(sortField, sortValue).Limit(limit).Page(page).Filter(filter)
+	paginatedData, err := pQuery.Decode(x).Find()
+	return paginatedData.Pagination, m.handleErrors(name, PAGINATE, err)
+
+}

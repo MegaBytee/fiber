@@ -85,3 +85,8 @@ func (s *Schema) Paginate(filter primitive.D, limit, page int64, x any) mongopag
 	pagination, _ := s.Mongo.Paginate(s.Name, filter, limit, page, x)
 	return pagination
 }
+
+func (s *Schema) PaginateWithSort(filter primitive.D, sortField string, sortValue int, limit, page int64, x any) mongopagination.PaginationData {
+	pagination, _ := s.Mongo.PaginateWithSort(s.Name, filter, sortField, sortValue, limit, page, x)
+	return pagination
+}
